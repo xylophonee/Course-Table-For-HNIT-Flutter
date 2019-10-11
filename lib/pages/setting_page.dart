@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hgkcb/pages/setting_page/select_max_week.dart';
 import 'package:hgkcb/pages/setting_page/select_theme.dart';
 import 'package:hgkcb/pages/setting_page/select_week.dart';
@@ -50,6 +51,11 @@ class _SettingPageState extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(
+      width: 411,
+      height: 731,
+      allowFontScaling: false,
+    )..init(context);
     return Scaffold(
       body: FutureBuilder(
         future: _future,

@@ -39,7 +39,7 @@ class _DropDownState extends State<DropDown> with TickerProviderStateMixin {
   double _coverViewOpacity = 1;
   // 下拉提示
   String tip = "tip";
-  //下拉距离
+  //下拉距离临界值
   static const double dragDistance = 150;
 
   @override
