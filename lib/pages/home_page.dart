@@ -42,7 +42,11 @@ class HomePage extends StatelessWidget {
             controller: controller,
             child: Column(
               children: <Widget>[
-                TitleBar(title: "同步课表", setBackBtn: false, setPadding: false),
+                TitleBar(
+                  title: "同步课表",
+                  icon: Icons.refresh,
+                  doAnimation: true,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 64.0, right: 64.0),
                   //child: Center(child: Text("test")),

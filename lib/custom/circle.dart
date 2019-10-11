@@ -22,8 +22,8 @@ class Circle extends CustomPainter {
     double height = size.height;
     double centerX = width / 2;
     double centerY = height / 2;
-    //mPaint.shader = ui.Gradient.linear(
-    //    Offset(0, 0), Offset(width, height), [color, Color(0xff66ccff)]);
+    mPaint.shader = ui.Gradient.linear(
+        Offset(0, 0), Offset(width, height), [color, Color(0xff66ccff)]);
     //canvas.drawRect(Rect.fromPoints(Offset(0, height), Offset(width, 0)), mPaint);
     canvas.drawCircle(Offset(centerX, centerY), width * progress, mPaint);
   }

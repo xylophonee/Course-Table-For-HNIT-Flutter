@@ -74,7 +74,7 @@ class _SettingPageState extends State<SettingPage> {
                   scrollDirection: Axis.vertical,
                   child: Column(
                     children: <Widget>[
-                      TitleBar(title: "设置"),
+                      TitleBar(title: "设置", icon: Icons.settings),
                       SettingTag("课表设置"),
                       TapBottomSheetOption(
                         mainText: "当前学期",

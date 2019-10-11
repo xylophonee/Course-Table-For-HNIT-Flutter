@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hgkcb/custom/circle.dart';
 import 'package:hgkcb/model/theme_model.dart';
+import 'package:hgkcb/widgets/corner_circle.dart';
 import 'package:provider/provider.dart';
 
 /*
@@ -16,7 +16,17 @@ class TitleBar extends StatelessWidget {
 
   final bool setBackBtn;
 
-  TitleBar({this.title, this.setPadding = false, this.setBackBtn = true});
+  final bool doAnimation;
+
+  final IconData icon;
+
+  TitleBar({
+    this.title,
+    this.icon,
+    this.setPadding = false,
+    this.setBackBtn = true,
+    this.doAnimation = false
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +37,11 @@ class TitleBar extends StatelessWidget {
       allowFontScaling: false,
     )..init(context);
     double statusBarHeight = ScreenUtil.statusBarHeight;
-    double height = ScreenUtil.screenHeightDp * 0.2;
+    double height = ScreenUtil.screenHeightDp * 0.3;
     double width = ScreenUtil.screenWidthDp;
     double lrDistance = width * 0.05;
     double tbDistance = height * 0.1 + statusBarHeight;
-    double itemSize = height * 0.4;
+    double itemSize = height * 0.3;
     return Padding(
       padding: EdgeInsets.only(
         top: setPadding? statusBarHeight : 0,
@@ -45,7 +55,7 @@ class TitleBar extends StatelessWidget {
 
             // 返回按钮
             Positioned(
-              bottom: tbDistance,
+              top: tbDistance,
               left: lrDistance,
               child: Container(
                 //color: Colors.blue,
@@ -63,20 +73,10 @@ class TitleBar extends StatelessWidget {
               ),
             ),
 
-            // 标题背景
-            Positioned(
-              right: - (height * 0.5),
-              top: - (height * 0.5),
-              child: CustomPaint(
-                size: Size(height, height),
-                painter: Circle(color: Colors.blue[300], progress: 1),
-              ),
-            ),
-
             // 标题
             Positioned(
-              bottom: tbDistance,
-              left: setBackBtn? itemSize + 36 : lrDistance * 2,
+              top: tbDistance + (itemSize  * 1.1),
+              left: lrDistance + (itemSize * 0.2),
               child: Container(
                 //color: Colors.red,
                 height: itemSize,
@@ -84,11 +84,20 @@ class TitleBar extends StatelessWidget {
                 child: Text(
                   title,
                   style: TextStyle(
-                      fontSize: 36.0,
+                      fontSize: itemSize * 0.6,
                       fontWeight: FontWeight.bold,
                       color: textPrimaryColor
                   ),
                 ),
+              ),
+            ),
+
+            Positioned(
+              child: CornerCircle(
+                size: height * 0.8,
+                icon: icon,
+                iconSize: itemSize,
+                doAnimation: doAnimation,
               ),
             ),
 

@@ -97,7 +97,7 @@ class _GetCoursePage extends State<GetCoursePage> {
         controller: controller,
         child: Column(
           children: <Widget>[
-            TitleBar(title: "获取课表", setPadding: false),
+            TitleBar(title: "同步课表", setPadding: false),
             Padding(
               padding: const EdgeInsets.only(left: 64.0, right: 64.0),
               child: Center(

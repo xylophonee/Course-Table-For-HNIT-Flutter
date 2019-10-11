@@ -80,6 +80,12 @@ class _DropDownState extends State<DropDown> with TickerProviderStateMixin {
     return newOpacity;
   }
 
+  _fireProgress() {
+    //把滑动进度发送出去
+    double progress = _mainViewTop / ScreenUtil.screenHeightDp;
+    eventBus.fire(OnDropDownUpdateEvent(progress));
+  }
+
   _onVerticalDragUpdate(DragUpdateDetails details) {
     //print(details.delta.direction);
     //记录滑动的方向
@@ -94,6 +100,7 @@ class _DropDownState extends State<DropDown> with TickerProviderStateMixin {
       _scaleValue = _getScaleValue(_mainViewTop);
       _coverViewOpacity = _getCoverOpacity(_mainViewTop);
     });
+    _fireProgress();
   }
 
   _onVerticalDragEnd(DragEndDetails details) {
@@ -140,6 +147,7 @@ class _DropDownState extends State<DropDown> with TickerProviderStateMixin {
           _coverViewOpacity = _getCoverOpacity(value);
           //print(_mainViewTop);
         });
+        _fireProgress();
       });
     controller.forward();
   }
