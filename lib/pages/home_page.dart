@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hgkcb/custom/drop_down.dart';
+import 'package:hgkcb/widgets/drop_down.dart';
 import 'package:hgkcb/model/theme_model.dart';
 import 'package:hgkcb/pages/home_page/header_bar/header_bar.dart';
 import 'package:hgkcb/pages/home_page/course_table/course_table_container.dart';

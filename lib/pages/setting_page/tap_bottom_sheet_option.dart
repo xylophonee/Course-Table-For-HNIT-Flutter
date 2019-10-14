@@ -24,8 +24,8 @@ class TapBottomSheetOption extends StatelessWidget {
           padding: const EdgeInsets.only(
             top: 16.0,
             bottom: 16.0,
-            left: 32.0,
-            right: 32.0,
+            left: 24.0,
+            right: 24.0,
           ),
           child: Row(
             children: <Widget>[
