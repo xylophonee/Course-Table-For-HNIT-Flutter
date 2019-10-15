@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hgkcb/pages/get_course_page/login_form.dart';
 import 'package:hgkcb/event/events.dart';
 import 'package:hgkcb/util/http_util.dart';
@@ -86,12 +87,17 @@ class _GetCoursePage extends State<GetCoursePage> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(
+      width: 411,
+      height: 731,
+      allowFontScaling: false,
+    )..init(context);
     return Scaffold(
       body: SingleChildScrollView(
         controller: controller,
         child: Column(
           children: <Widget>[
-            TitleBar(title: "获取课表"),
+            TitleBar(title: "同步课表", setPadding: false),
             Padding(
               padding: const EdgeInsets.only(left: 64.0, right: 64.0),
               child: Center(

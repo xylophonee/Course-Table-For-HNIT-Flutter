@@ -114,3 +114,12 @@ class TransferDragEndEvent {
   TransferDragEndEvent(this.details);
 
 }
+
+// 当 DropDown 向下滑动时产生的事件
+class OnDropDownUpdateEvent {
+  //滑动的进度
+  double progress;
+
+  OnDropDownUpdateEvent(this.progress);
+
+}

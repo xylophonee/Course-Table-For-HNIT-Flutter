@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hgkcb/pages/setting_page/select_max_week.dart';
 import 'package:hgkcb/pages/setting_page/select_theme.dart';
 import 'package:hgkcb/pages/setting_page/select_week.dart';
@@ -6,6 +7,7 @@ import 'package:hgkcb/pages/setting_page/select_xq.dart';
 import 'package:hgkcb/pages/setting_page/tap_bottom_sheet_option.dart';
 import 'package:hgkcb/pages/setting_page/setting_tag.dart';
 import 'package:hgkcb/util/data_util.dart';
+import 'package:hgkcb/widgets/setting_card.dart';
 import 'package:hgkcb/widgets/title_bar.dart';
 
 /*
@@ -50,6 +52,11 @@ class _SettingPageState extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(
+      width: 411,
+      height: 731,
+      allowFontScaling: false,
+    )..init(context);
     return Scaffold(
       body: FutureBuilder(
         future: _future,
@@ -68,66 +75,81 @@ class _SettingPageState extends State<SettingPage> {
                   scrollDirection: Axis.vertical,
                   child: Column(
                     children: <Widget>[
-                      TitleBar(title: "设置"),
-                      SettingTag("课表设置"),
-                      TapBottomSheetOption(
-                        mainText: "当前学期",
-                        resultText: _xq,
-                        showBottomSheet: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return SelectXq();
-                              });
-                        },
+                      TitleBar(title: "设置", icon: Icons.settings),
+                      SettingCard(
+                        title: "课表设置",
+                        primaryColor: Colors.blue,
+                        children: <Widget>[
+                          TapBottomSheetOption(
+                            mainText: "当前学期",
+                            resultText: _xq,
+                            showBottomSheet: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return SelectXq();
+                                  });
+                            },
+                          ),
+                          TapBottomSheetOption(
+                            mainText: "当前周数",
+                            resultText: "第 $_currentWeek 周",
+                            showBottomSheet: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return SelectWeek(
+                                      maxWeek: _maxWeek,
+                                      currentWeek: _currentWeek,
+                                      callback: (currentWeek) =>
+                                          _onSelectCurrentWeek(currentWeek),
+                                    );
+                                  });
+                            },
+                          ),
+                          TapBottomSheetOption(
+                            mainText: "总周数",
+                            resultText: "$_maxWeek",
+                            showBottomSheet: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return SelectMaxWeek(
+                                      maxWeek: _maxWeek,
+                                      callback: (maxWeek) =>
+                                          _onSelectMaxWeek(maxWeek),
+                                    );
+                                  });
+                            },
+                          ),
+                        ],
                       ),
-                      TapBottomSheetOption(
-                        mainText: "当前周数",
-                        resultText: "第 $_currentWeek 周",
-                        showBottomSheet: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return SelectWeek(
-                                  maxWeek: _maxWeek,
-                                  currentWeek: _currentWeek,
-                                  callback: (currentWeek) =>
-                                      _onSelectCurrentWeek(currentWeek),
-                                );
-                              });
-                        },
+                      SettingCard(
+                        title: "UI相关",
+                        primaryColor: Colors.blue,
+                        children: <Widget>[
+                          TapBottomSheetOption(
+                            mainText: "界面主题",
+                            resultText: "默认",
+                            showBottomSheet: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return SelectTheme();
+                                  });
+                            },
+                          ),
+                        ],
                       ),
-                      TapBottomSheetOption(
-                        mainText: "总周数",
-                        resultText: "$_maxWeek",
-                        showBottomSheet: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return SelectMaxWeek(
-                                  maxWeek: _maxWeek,
-                                  callback: (maxWeek) =>
-                                      _onSelectMaxWeek(maxWeek),
-                                );
-                              });
-                        },
-                      ),
-                      SettingTag("UI相关"),
-                      TapBottomSheetOption(
-                        mainText: "界面主题",
-                        resultText: "默认",
-                        showBottomSheet: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return SelectTheme();
-                              });
-                        },
-                      ),
-                      SettingTag("其它"),
-                      TapBottomSheetOption(
-                        mainText: "关于湖工课程表",
-                        resultText: " ",
+                      SettingCard(
+                        title: "其它",
+                        primaryColor: Colors.blue,
+                        children: <Widget>[
+                          TapBottomSheetOption(
+                            mainText: "关于湖工课程表",
+                            resultText: " ",
+                          ),
+                        ],
                       ),
                     ],
                   ),
