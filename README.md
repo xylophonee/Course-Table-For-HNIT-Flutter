@@ -1,6 +1,6 @@
 # 湖工课程表（ Course-Table-For-HNIT ）
 
-为湖南工学院写的课程表 App
+为湖南工学院写的课程表 App - Flutter版
 
 ## 介绍（ Introduce ）
 **湖工课程表**是为湖南工学院写的课程表 
